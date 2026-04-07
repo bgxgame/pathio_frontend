@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useState } from 'react';
 import { createPortal } from 'react-dom';
-import ReactFlow, { Background, Controls, useNodesState, useEdgesState, ReactFlowProvider, useReactFlow, addEdge } from 'reactflow';
-import 'reactflow/dist/style.css';
+import { ReactFlow, Background, Controls, useNodesState, useEdgesState, ReactFlowProvider, useReactFlow, addEdge, type Node, type Edge, type Connection } from '@xyflow/react';
+import '@xyflow/react/dist/style.css';
 import { api } from './api';
 import PathioNode from './components/PathioNode';
 import NoteView from './components/NoteView'; 
@@ -18,6 +18,10 @@ const EDGE_TYPES = {};
 const CONTEXT_MENU_WIDTH = 160;
 const CONTEXT_MENU_HEIGHT = 220;
 const CONTEXT_MENU_GAP = 8;
+
+type PathioNodeData = { label: string; status: string };
+type PathioNodeType = Node<PathioNodeData, 'pathio'>;
+type PathioEdgeType = Edge;
 
 // 自定义高质感弹窗
 function Dialog({ 
@@ -108,8 +112,8 @@ function Sidebar({ currentId, onSelect, isCollapsed, setDialog }: any) {
 // 2. 画布内容容器
 // ==========================================
 function CanvasViewport({ roadmapId, onToggleSidebar, isSidebarCollapsed, setDialog }: any) {
-  const [nodes, setNodes, onNodesChange] = useNodesState([]);
-  const [edges, setEdges, onEdgesChange] = useEdgesState([]);
+  const [nodes, setNodes, onNodesChange] = useNodesState<PathioNodeType>([]);
+  const [edges, setEdges, onEdgesChange] = useEdgesState<PathioEdgeType>([]);
   const { screenToFlowPosition } = useReactFlow();
   const [activeNode, setActiveNode] = useState<{id: string, title: string} | null>(null);
   const [menu, setMenu] = useState<{ id: string, x: number, y: number } | null>(null);
@@ -118,13 +122,13 @@ function CanvasViewport({ roadmapId, onToggleSidebar, isSidebarCollapsed, setDia
   useEffect(() => {
     if (!roadmapId) return;
     api.get(`/nodes?roadmap_id=${roadmapId}`).then(res => {
-      setNodes(res.data.map((n: any) => ({
+      setNodes(res.data.map((n: any): PathioNodeType => ({
         id: n.id, type: 'pathio', position: { x: n.pos_x, y: n.pos_y },
         data: { label: n.title, status: n.status },
       })));
     });
     api.get(`/edges?roadmap_id=${roadmapId}`).then(res => {
-      setEdges(res.data.map((e: any) => ({ id: e.id, source: e.source_node_id, target: e.target_node_id })));
+      setEdges(res.data.map((e: any): PathioEdgeType => ({ id: e.id, source: e.source_node_id, target: e.target_node_id })));
     });
   }, [roadmapId, setNodes, setEdges]);
 
@@ -216,7 +220,33 @@ function CanvasViewport({ roadmapId, onToggleSidebar, isSidebarCollapsed, setDia
           <button onClick={onToggleSidebar} className="absolute top-6 left-6 z-10 p-2 bg-white/80 backdrop-blur-md border border-gray-100 rounded-xl shadow-sm hover:text-pathio-500 transition-all">
             {isSidebarCollapsed ? <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M13 5l7 7-7 7M5 5l7 7-7 7" strokeWidth="2" strokeLinecap="round" /></svg> : <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M11 19l-7-7 7-7M19 19l-7-7 7-7" strokeWidth="2" strokeLinecap="round" /></svg>}
           </button>
-          <ReactFlow nodes={nodes} edges={edges} onNodesChange={onNodesChange} onEdgesChange={onEdgesChange} onConnect={(p) => { if (roadmapId) { setEdges(eds => addEdge(p, eds)); api.post('/edges', { ...p, roadmap_id: roadmapId }); } }} onNodeClick={(_e, node) => { setMenu(null); setActiveNode({ id: node.id, title: node.data.label }); }} onPaneClick={onPaneClick} onNodeContextMenu={(e, node) => { e.preventDefault(); setMenu({ id: node.id, x: e.clientX, y: e.clientY }); }} onNodeDragStop={(_, node) => { api.put(`/nodes/${node.id}/position`, { pos_x: node.position.x, pos_y: node.position.y }); }} nodeTypes={NODE_TYPES} edgeTypes={EDGE_TYPES} fitView>
+          <ReactFlow
+            nodes={nodes}
+            edges={edges}
+            onNodesChange={onNodesChange}
+            onEdgesChange={onEdgesChange}
+            onConnect={(p: Connection) => {
+              if (roadmapId) {
+                setEdges((eds) => addEdge(p, eds));
+                api.post('/edges', { ...p, roadmap_id: roadmapId });
+              }
+            }}
+            onNodeClick={(_e: React.MouseEvent, node: PathioNodeType) => {
+              setMenu(null);
+              setActiveNode({ id: node.id, title: node.data.label });
+            }}
+            onPaneClick={onPaneClick}
+            onNodeContextMenu={(e: React.MouseEvent, node: PathioNodeType) => {
+              e.preventDefault();
+              setMenu({ id: node.id, x: e.clientX, y: e.clientY });
+            }}
+            onNodeDragStop={(_e, node: PathioNodeType) => {
+              api.put(`/nodes/${node.id}/position`, { pos_x: node.position.x, pos_y: node.position.y });
+            }}
+            nodeTypes={NODE_TYPES}
+            edgeTypes={EDGE_TYPES}
+            fitView
+          >
             <Background color="#f1f5f9" gap={24} />
             <Controls />
           </ReactFlow>
