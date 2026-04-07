@@ -22,3 +22,24 @@ html, body, #root {
 ::-webkit-scrollbar-track {
   background: transparent;
 }
+
+/* 让 Editor.js 的块在悬浮时稍微显示出操作按钮 */
+.ce-block {
+  @apply transition-all duration-200;
+}
+
+.ce-toolbar__content, .ce-block__content {
+  max-width: 900px; /* 控制编辑器内容宽度 */
+}
+
+/* 标题样式 */
+.ce-header {
+  padding: 0.5em 0;
+  margin: 0;
+  font-weight: 800;
+}
+
+/* 占位符颜色 */
+.codex-editor--empty .ce-paragraph:before {
+  color: #d1d5db; 
+}

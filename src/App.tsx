@@ -6,7 +6,9 @@ import type { Node, Edge as FlowEdge, Connection } from 'reactflow';
 import 'reactflow/dist/style.css';
 import { api } from './api';
 import PathioNode from './components/PathioNode';
-import NoteView from './components/NoteView'; // 引入新组件
+import NoteView from './components/NoteView'; 
+import { Routes, Route } from 'react-router-dom';
+import ShareView from './components/ShareView';
 
 const nodeTypes = { pathio: PathioNode };
 
@@ -108,8 +110,16 @@ function Canvas() {
 
 export default function App() {
   return (
-    <ReactFlowProvider>
-      <Canvas />
-    </ReactFlowProvider>
+    <Routes>
+      {/* 分享路由 */}
+      <Route path="/share/:token" element={<ShareView />} />
+      
+      {/* 默认编辑器路由 */}
+      <Route path="/" element={
+        <ReactFlowProvider>
+          <Canvas />
+        </ReactFlowProvider>
+      } />
+    </Routes>
   );
 }
