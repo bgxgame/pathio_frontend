@@ -16,11 +16,16 @@
     "@editorjs/inline-code": "^1.5.2",
     "@editorjs/list": "^2.0.9",
     "@editorjs/marker": "^1.4.0",
+    "@tiptap/extension-placeholder": "^3.22.2",
+    "@tiptap/extension-underline": "^3.22.2",
+    "@tiptap/pm": "^3.22.2",
+    "@tiptap/react": "^3.22.2",
+    "@tiptap/starter-kit": "^3.22.2",
+    "@xyflow/react": "^12.10.2",
     "axios": "^1.14.0",
     "react": "^19.2.4",
     "react-dom": "^19.2.4",
-    "react-router-dom": "^7.14.0",
-    "reactflow": "^11.11.4"
+    "react-router-dom": "^7.14.0"
   },
   "devDependencies": {
     "@eslint/js": "^9.39.4",
