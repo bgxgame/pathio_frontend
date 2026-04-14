@@ -46,7 +46,7 @@ function UpgradeModal({ isOpen, onClose }: { isOpen: boolean; onClose: () => voi
               <span className="text-pathio-500 font-black text-[10px] uppercase tracking-[0.4em] mb-4 block">Upgrade to Pro</span>
               <h2 className="text-4xl font-black italic mb-6 leading-tight uppercase text-white">释放团队的<br/>无限创造力</h2>
               <div className="space-y-4 mb-8">
-                {['无限路线图空间', '不限数量的协作席位', '高级分享权限', '专属技术支持'].map((feature) => (
+                {['更多路线图容量（免费最多 3 个）', '更多协作席位（免费最多 2 人）', '更高节点容量（免费总计最多 50 个）', '团队协作与空间管理'].map((feature) => (
                   <div key={feature} className="flex items-center gap-3 text-xs font-bold opacity-90 text-white">
                     <div className="w-5 h-5 rounded-full bg-pathio-500 flex items-center justify-center text-white font-black">✓</div>
                     {feature}

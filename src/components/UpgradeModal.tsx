@@ -18,7 +18,7 @@ export default function UpgradeModal({ isOpen, onClose }: { isOpen: boolean, onC
                 打破空间限制，开启全员协作模式。让知识在组织内部自由流转，沉淀为核心研究资产。
               </p>
               <div className="space-y-4">
-                {['无限路线图空间', '不限数量的协作席位', '高级分享权限', '专属技术支持'].map(f => (
+                {['更多路线图容量（免费最多 3 个）', '更多协作席位（免费最多 2 人）', '更高节点容量（免费总计最多 50 个）', '团队协作与空间管理'].map(f => (
                   <div key={f} className="flex items-center gap-3 text-xs font-bold">
                     <div className="w-4 h-4 rounded-full bg-pathio-500 flex items-center justify-center">
                       <svg className="w-2.5 h-2.5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={4} d="M5 13l4 4L19 7" /></svg>
