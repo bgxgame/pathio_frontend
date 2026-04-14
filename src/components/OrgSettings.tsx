@@ -90,7 +90,11 @@ export default function OrgSettings({ setGlobalOrgName }: { setGlobalOrgName?: (
               <span className="text-[10px] font-black uppercase tracking-[0.3em] text-pathio-500 mb-2 block">Active Subscription</span>
               <h3 className="text-3xl font-black text-white italic uppercase mb-2 leading-none">{plan === 'free' ? 'Free 免费体验版' : 'Team 团队协作版'}</h3>
             </div>
+<<<<<<< HEAD
             {plan === 'free' && <button onClick={handleUpgrade} disabled={isUpgrading} className="bg-pathio-500 hover:bg-white hover:text-pathio-900 text-white px-8 py-4 rounded-2xl font-black transition-all shadow-xl active:scale-95 uppercase text-xs">{isUpgrading ? '处理中...' : '升级方案 →'}</button>}
+=======
+            {plan === 'free' && <button onClick={() => api.post('/org/invite').catch(() => {})} className="bg-pathio-500 hover:bg-white hover:text-pathio-900 text-white px-8 py-4 rounded-2xl font-black transition-all shadow-xl active:scale-95 uppercase text-xs">查看团队版 →</button>}
+>>>>>>> 9d4987e76d3906b20d0a78e88cd85f9fd0fc4fac
           </div>
           <div className="absolute top-0 right-0 w-64 h-64 bg-pathio-500/10 rounded-full -translate-y-1/2 translate-x-1/2 blur-3xl"></div>
         </section>

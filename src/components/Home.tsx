@@ -73,7 +73,7 @@ export default function Home() {
           <div className="bg-white p-10 rounded-[2.5rem] shadow-sm border border-gray-100">
              <div className="w-12 h-12 bg-pathio-500/10 rounded-2xl flex items-center justify-center text-pathio-500 mb-6 font-black text-xl italic">D</div>
              <h3 className="text-xl font-bold mb-4">深度笔记沉淀</h3>
-             <p className="text-gray-400 text-sm leading-relaxed font-medium">点击节点瞬间下滑进入深度研究空间。基于 Editor.js 的块状编辑，让每一份资料都有结构，有溯源。</p>
+             <p className="text-gray-400 text-sm leading-relaxed font-medium">点击节点瞬间下滑进入深度研究空间。基于 Tiptap 的结构化编辑，让每一份资料都有结构，有溯源。</p>
           </div>
           <div className="bg-white p-10 rounded-[2.5rem] shadow-sm border border-gray-100">
              <div className="w-12 h-12 bg-pathio-500/10 rounded-2xl flex items-center justify-center text-pathio-500 mb-6 font-black text-xl italic">S</div>
@@ -96,9 +96,9 @@ export default function Home() {
             <h4 className="text-xs font-black uppercase tracking-widest text-gray-400 mb-2">Free</h4>
             <div className="text-5xl font-black mb-8 italic">0<span className="text-lg not-italic text-gray-300 ml-1">/ mo</span></div>
             <ul className="space-y-4 mb-12 text-sm font-bold text-gray-600">
-              <li className="flex items-center gap-3"><svg className="w-5 h-5 text-green-500" fill="currentColor" viewBox="0 0 20 20"><path d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"/></svg> 可创建 1 个路线图空间</li>
+              <li className="flex items-center gap-3"><svg className="w-5 h-5 text-green-500" fill="currentColor" viewBox="0 0 20 20"><path d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"/></svg> 可创建最多 3 个路线图空间</li>
               <li className="flex items-center gap-3"><svg className="w-5 h-5 text-green-500" fill="currentColor" viewBox="0 0 20 20"><path d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"/></svg> 最多邀请 1 名协作者</li>
-              <li className="text-gray-300 line-through flex items-center gap-3"><svg className="w-5 h-5 opacity-20" fill="currentColor" viewBox="0 0 20 20"><path d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"/></svg> 路线图空间公开分享</li>
+              <li className="text-gray-300 line-through flex items-center gap-3"><svg className="w-5 h-5 opacity-20" fill="currentColor" viewBox="0 0 20 20"><path d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"/></svg> 团队版专享：节点总量不受 50 上限限制</li>
             </ul>
             <Link to="/register" className="block w-full py-4 text-center border border-gray-100 rounded-2xl font-bold hover:bg-gray-50 transition-all italic">立即开始</Link>
           </div>
@@ -112,9 +112,9 @@ export default function Home() {
             <div className="text-5xl font-black mb-8 italic">30<span className="text-lg not-italic text-gray-500 ml-1">RMB / seat / mo</span></div>
             <ul className="space-y-4 mb-12 text-sm font-bold opacity-80">
               <li className="flex items-center gap-3"><svg className="w-5 h-5 text-pathio-500" fill="currentColor" viewBox="0 0 20 20"><path d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"/></svg> 无限数量路线图空间</li>
-              <li className="flex items-center gap-3"><svg className="w-5 h-5 text-pathio-500" fill="currentColor" viewBox="0 0 20 20"><path d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"/></svg> 阶梯定价优惠 (20人以上 25元)</li>
-              <li className="flex items-center gap-3"><svg className="w-5 h-5 text-pathio-500" fill="currentColor" viewBox="0 0 20 20"><path d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"/></svg> 组织资产沉淀与节点任务指派</li>
-              <li className="flex items-center gap-3"><svg className="w-5 h-5 text-pathio-500" fill="currentColor" viewBox="0 0 20 20"><path d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"/></svg> 一键只读分享与克隆</li>
+              <li className="flex items-center gap-3"><svg className="w-5 h-5 text-pathio-500" fill="currentColor" viewBox="0 0 20 20"><path d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"/></svg> 按席位扩展协作规模</li>
+              <li className="flex items-center gap-3"><svg className="w-5 h-5 text-pathio-500" fill="currentColor" viewBox="0 0 20 20"><path d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"/></svg> 组织资产沉淀与团队协作管理</li>
+              <li className="flex items-center gap-3"><svg className="w-5 h-5 text-pathio-500" fill="currentColor" viewBox="0 0 20 20"><path d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"/></svg> 一键只读分享</li>
             </ul>
             <Link to="/register" className="block w-full py-5 text-center bg-pathio-500 text-white rounded-2xl font-bold shadow-xl shadow-pathio-500/30 hover:bg-white hover:text-pathio-900 transition-all italic">开启团队空间</Link>
           </div>
